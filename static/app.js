@@ -10,7 +10,7 @@ class Chatbox {
         this.messages = [];
     }
 
-    display() {
+    display(){
         const {openButton, chatBox, sendButton} = this.args;
 
         openButton.addEventListener('click', () => this.toggleState(chatBox))
@@ -46,7 +46,7 @@ class Chatbox {
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('http://127.0.0.1:5000/predict', {
+        fetch('/message', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -56,7 +56,8 @@ class Chatbox {
           })
           .then(r => r.json())
           .then(r => {
-            let msg2 = { name: "Sam", message: r.answer };
+            let msg2 = { name: "Bot", message: r.answer };
+            console.log(msg2)
             this.messages.push(msg2);
             this.updateChatText(chatbox)
             textField.value = ''
@@ -66,12 +67,13 @@ class Chatbox {
             this.updateChatText(chatbox)
             textField.value = ''
           });
+  
     }
 
     updateChatText(chatbox) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
+            if (item.name === "Bot")
             {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
