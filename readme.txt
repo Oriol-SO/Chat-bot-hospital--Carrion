@@ -7,6 +7,7 @@ INSTALAR
 
 pip install flask
 
+pip install google-cloud-dialogflow
 
 --ejecutar
 
