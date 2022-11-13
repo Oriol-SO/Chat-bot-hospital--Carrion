@@ -8,6 +8,8 @@ class Chatbox {
 
         this.state = false;
         this.messages = [];
+
+        
     }
 
     display(){
@@ -17,12 +19,17 @@ class Chatbox {
 
         sendButton.addEventListener('click', () => this.onSendButton(chatBox))
 
+        let msge={ name: "Bot", message:'Hola soy Danielito, un asistente virtual que te ayudara a encontrar la información que buscas en la pagina web del Hospital Daniel Alcides Carrion'};
+        this.messages.push(msge)
+
         const node = chatBox.querySelector('input');
         node.addEventListener("keyup", ({key}) => {
             if (key === "Enter") {
                 this.onSendButton(chatBox)
             }
         })
+
+        
     }
 
     toggleState(chatbox) {
